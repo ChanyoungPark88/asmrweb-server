@@ -3,7 +3,7 @@ const path = require('path');
 const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 const colors = require('colors');
-const http = require('http');
+const { createServer } = require('http');
 const cors = require('cors');
 const { Server } = require('socket.io');
 
@@ -33,13 +33,14 @@ app.post('/api/messages', (req, res) => {
 });
 
 // Form here Realtime Socket PART
-const server = http.createServer(app);
+const server = createServer(app);
 
 const io = new Server(server, {
   pingTimeout: 60000,
   cors: {
     origin: 'https://asmrweb.vercel.app/',
     methods: ['GET', 'POST'],
+    credentials: true,
   },
 });
 io.on('connection', (socket) => {
