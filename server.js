@@ -19,7 +19,7 @@ app.use(cors());
 
 // app.use('/api/messages', messageRoutes);
 
-app.get('/api', (req, res) => {
+app.get('/', (req, res) => {
   res.send('API is Running');
 });
 
