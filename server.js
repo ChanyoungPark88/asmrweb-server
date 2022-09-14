@@ -38,11 +38,10 @@ const server = http.createServer(app);
 const io = new Server(server, {
   pingTimeout: 60000,
   cors: {
-    origin: process.env.NODE_ENV,
+    origin: 'https://asmrweb.vercel.app/',
     methods: ['GET', 'POST'],
   },
 });
-
 io.on('connection', (socket) => {
   console.log(`User Connected: ${socket.id}`);
 
@@ -64,7 +63,6 @@ io.on('connection', (socket) => {
 
 server.listen(PORT, () => {
   console.log(`Server is Running on Port ${PORT}`.yellow.bold);
-  console.log(process.env.NODE_ENV);
 });
 
 module.exports = server;
